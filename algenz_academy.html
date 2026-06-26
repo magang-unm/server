@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algenz Academy | Practical digital learning with real outputs.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #312E81; /* From theme-color */
+            --primary-light: #4F46E5;
+            --bg-color: #F8FAFC;
+            --text-light: #0F172A;
+            --text-muted: #475569;
+            --card-bg: rgba(255, 255, 255, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo span {
+            color: var(--primary-light);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            background: radial-gradient(circle at 50% 50%, #e0e7ff 0%, var(--bg-color) 70%);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40vw;
+            height: 40vw;
+            background: var(--primary);
+            filter: blur(150px);
+            opacity: 0.3;
+            z-index: -1;
+            border-radius: 50%;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #1e1b4b, #4F46E5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            max-width: 800px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-btn {
+            background-color: var(--primary-light);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px -10px var(--primary-light);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px -10px var(--primary-light);
+            background-color: #6366f1;
+        }
+
+        .programs-section {
+            padding: 6rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .program-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: transform 0.3s ease, background 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 1);
+            border-color: var(--primary-light);
+        }
+
+        .program-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-light);
+        }
+
+        .program-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--primary-light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--text-muted);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">Algenz<span>Academy</span></a>
+        <a href="https://academy.algenz.id/" target="_blank" class="cta-btn" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Kunjungi Web Asli</a>
+    </header>
+
+    <section class="hero">
+        <h1>Practical Digital Learning with Real Outputs.</h1>
+        <p class="subtitle">Belajar skill digital dengan cara yang lebih mudah dipahami, lebih banyak praktik, dan lebih jelas hasilnya.</p>
+        <a href="#programs" class="cta-btn">Jelajahi Program Kami</a>
+    </section>
+
+    <section id="programs" class="programs-section">
+        <h2 class="section-title">Program Unggulan</h2>
+        <div class="programs-grid">
+            <div class="program-card">
+                <span class="badge">Kelas Gratis</span>
+                <h3>AI untuk Produktivitas</h3>
+                <p>Mulai perjalanan Anda dengan kelas gratis kami. Rasakan manfaatnya langsung dalam aktivitas sehari-hari sebelum beralih ke program intensif lainnya.</p>
+            </div>
+            
+            <div class="program-card">
+                <span class="badge">Program Intensif</span>
+                <h3>Desain & Video</h3>
+                <p>Tingkatkan kreativitas Anda dengan mempelajari teknik desain modern dan produksi video yang berdampak tinggi.</p>
+            </div>
+            
+            <div class="program-card">
+                <span class="badge">Program Intensif</span>
+                <h3>Keamanan Digital</h3>
+                <p>Pelajari fondasi penting untuk melindungi data dan privasi dalam dunia digital yang terus berkembang.</p>
+            </div>
+
+            <div class="program-card">
+                <span class="badge">Program Intensif</span>
+                <h3>Website Dasar</h3>
+                <p>Bangun presensi online Anda sendiri. Pelajari cara membuat website dari awal hingga siap diluncurkan ke publik.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Algenz Academy (Fanmade Page). All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
