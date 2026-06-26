@@ -57,3 +57,8 @@ usermod -aG sudo namauserbaru
 
 ssh-keygen -t ed25519 -C "asdardevs@gmail.com"
 authorized_keys
+
+
+
+
+https://github.com/DistritekDevOps/learning-devops
