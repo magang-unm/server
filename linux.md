@@ -385,3 +385,12 @@ tail -f /var/log/nginx/access.log
 ## Referensi
 
 - Repository pembelajaran: https://github.com/DistritekDevOps/learning-devops
+
+
+
+Web server
+
+APACHE 
+NGINX
+
+
