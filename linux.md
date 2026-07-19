@@ -31,7 +31,7 @@ ls -la
 # Masuk ke folder Documents
 cd Documents
 
-# Kembali ke folder sebelumnya
+# Naik satu tingkat ke folder induk
 cd ..
 
 # Membuat folder baru
@@ -58,8 +58,9 @@ cat backup.txt
 # Membaca file panjang per halaman
 less backup.txt
 
-# Mengedit file lewat terminal
-nano backup.txt / vim
+# Mengedit file lewat terminal (pilih salah satu editor)
+nano backup.txt
+vim backup.txt
 ```
 
 > ⚠️ **Hati-hati dengan `rm`** — file yang dihapus lewat terminal tidak masuk ke trash/recycle bin.
@@ -385,12 +386,4 @@ tail -f /var/log/nginx/access.log
 ## Referensi
 
 - Repository pembelajaran: https://github.com/DistritekDevOps/learning-devops
-
-
-
-Web server
-
-APACHE 
-NGINX
-
-
+- Materi lanjutan web server (Apache & Nginx): lihat [nginx.md](nginx.md)
