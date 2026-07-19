@@ -386,4 +386,5 @@ tail -f /var/log/nginx/access.log
 ## Referensi
 
 - Repository pembelajaran: https://github.com/DistritekDevOps/learning-devops
+- Materi lanjutan Linux (menengah–mahir): lihat [linux-lengkap.md](linux-lengkap.md)
 - Materi lanjutan web server (Apache & Nginx): lihat [nginx.md](nginx.md)
