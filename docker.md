@@ -369,7 +369,95 @@ docker run -d -p 3000:3000 username/myapp:1.0
 
 ---
 
-## 9. Praktik Terbaik (Best Practices)
+## 9. Resource Limit & Healthcheck
+
+### Membatasi CPU dan Memori
+
+Tanpa batasan, satu container yang bermasalah bisa menghabiskan seluruh resource host.
+
+```bash
+docker run -d --name app \
+  --memory 512m --memory-swap 512m \
+  --cpus 1.0 \
+  myapp:1.0
+```
+
+Di Docker Compose:
+
+```yaml
+services:
+  app:
+    image: myapp:1.0
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+```
+
+### Healthcheck — Memantau Kesehatan Container
+
+Docker bisa memeriksa apakah aplikasi di dalam container benar-benar sehat, bukan cuma "container-nya menyala":
+
+```dockerfile
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+  CMD curl -f http://localhost:3000/health || exit 1
+```
+
+Atau di Compose:
+
+```yaml
+services:
+  app:
+    image: myapp:1.0
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+```
+
+```bash
+# Status kesehatan terlihat di docker ps (healthy/unhealthy/starting)
+docker ps
+```
+
+> 💡 Kombinasikan dengan `restart: unless-stopped` (Compose) atau `--restart unless-stopped` agar container yang `unhealthy` otomatis di-restart oleh Docker.
+
+---
+
+## 10. Keamanan Container
+
+- **Jangan jalankan sebagai root** — tambahkan user non-root di Dockerfile:
+
+  ```dockerfile
+  RUN addgroup -S app && adduser -S app -G app
+  USER app
+  ```
+
+- **Batasi capability kernel** yang tidak dibutuhkan:
+
+  ```bash
+  docker run --cap-drop=ALL --cap-add=NET_BIND_SERVICE myapp:1.0
+  ```
+
+- **Read-only filesystem** — cegah container menulis ke filesystem-nya sendiri kecuali folder yang memang dibutuhkan:
+
+  ```bash
+  docker run --read-only -v /app/tmp --tmpfs /tmp myapp:1.0
+  ```
+
+- **Scan image dari kerentanan** yang diketahui sebelum deploy:
+
+  ```bash
+  docker scout cveimage myapp:1.0
+  ```
+
+- **Jangan mount Docker socket** (`-v /var/run/docker.sock:/var/run/docker.sock`) ke container kecuali benar-benar diperlukan (misalnya tool CI/CD) — ini setara memberi akses root ke seluruh host.
+
+---
+
+## 11. Praktik Terbaik (Best Practices)
 
 1. **Gunakan image dasar yang kecil** — misalnya varian `alpine` atau `slim` (`node:22-alpine`, bukan `node:22`).
 2. **Selalu gunakan tag versi spesifik** — hindari `latest` di produksi agar hasil build dapat direproduksi.
@@ -380,10 +468,12 @@ docker run -d -p 3000:3000 username/myapp:1.0
 7. **Jalankan sebagai non-root user** — tambahkan `USER node` (atau user lain) di Dockerfile untuk keamanan.
 8. **Multi-stage build** — pisahkan proses build dari image akhir agar ukurannya minimal.
 9. **Bersihkan resource secara berkala** — `docker system prune` untuk menghapus image dan container yang tidak terpakai.
+10. **Batasi resource dan pasang healthcheck** — cegah satu container bermasalah menghabiskan seluruh resource host (lihat bagian 9).
+11. **Jangan mount Docker socket sembarangan** dan hindari privilege berlebih (lihat bagian 10).
 
 ---
 
-## 10. Ringkasan Perintah Cepat (Cheat Sheet)
+## 12. Ringkasan Perintah Cepat (Cheat Sheet)
 
 ```bash
 docker pull <image>              # Unduh image
